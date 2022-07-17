@@ -71,3 +71,55 @@ const uncompress = (s) => {
     // and also a linear operation too
     return result.join('');
   }; 
+
+
+  const anagrams = (s1, s2) => {
+    const count = {};
+    for (let char of s1) { //retrieve the string character
+      
+      if (!(char in count)) { //check if the key doesn't exists
+        count[char] = 0;
+      }
+      count[char] += 1;
+    }
+    
+    for (let char of s2) { //get the character value
+      if (count[char] === undefined) {
+        return false;
+      } else {
+        count[char] -= 1;
+      }
+    }
+    
+    for (let char in count) {
+      if (count[char] !== 0) {
+        return false;
+      }
+    }
+    
+    return true;
+  };
+
+  const mostFrequentChar = (s) => {
+    let highest = 0;
+    let letter = '';
+    const hash = {};
+    for(let i of s){
+      if(!(i in hash)){
+        hash[i] = 0;
+      }else{
+        hash[i] += 1;
+      }
+    }
+  
+    for(let high in hash){
+      
+      if(hash[high] > highest){
+        highest = hash[high];
+        letter = high;
+      }
+    }
+    return letter;
+  };
+
+  
